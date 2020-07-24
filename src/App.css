@@ -1,0 +1,32 @@
+.App {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  width: 75%;
+  height: 35%;
+  align-items: center;
+  margin: 10px;
+}
+
+.description{
+  margin: 10px;
+}
+
+.keywordInputArea{
+  margin: 10px;
+  display: flex;
+}
+
+.keywordLbl{
+  margin-right: 10px;
+}
+
+button {
+  margin: 10px
+}

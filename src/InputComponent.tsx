@@ -1,5 +1,6 @@
 import React from 'react';
-export default class InputComponent extends React.Component{
+import { InputModel } from './models';
+export default class InputComponent extends React.Component<{}, InputModel>{
 
     constructor(props) {
         super(props);

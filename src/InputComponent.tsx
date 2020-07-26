@@ -1,6 +1,6 @@
 import React from 'react';
-import { InputModel } from './models';
-export default class InputComponent extends React.Component<{}, InputModel>{
+import { InputModel, InputModelProps } from './models';
+export default class InputComponent extends React.Component<InputModelProps, InputModel>{
 
     constructor(props) {
         super(props);
@@ -14,37 +14,35 @@ export default class InputComponent extends React.Component<{}, InputModel>{
     render(){
         return(
             <div>
-                <form onSubmit={this.getSentiments.bind(this)}>
-                    <textarea rows={10} onChange={this.handleTextChange.bind(this)}></textarea>
-                    <br />
-                    <div className="keywordInputArea">
-                        <div>
-                            <span className="keywordLbl">Keyword 1:</span>
-                            <input id="keyword1" onChange={this.handleKeywordChange.bind(this)} placeholder="Enter keyword here" />
-                        </div>
-                        <div>
-                            <span className="keywordLbl">Keyword 2:</span>
-                            <input id="keyword2" onChange={this.handleKeywordChange.bind(this)} placeholder="Enter keyword here" />
-                        </div>
+                <textarea rows={10} onChange={this.handleTextChange.bind(this)} value={this.state.text}></textarea>
+                <br />
+                <div className="keywordInputArea">
+                    <div>
+                        <span className="keywordLbl">Keyword 1:</span>
+                        <input id="keyword1" onChange={this.handleKeywordChange.bind(this)} placeholder="Enter keyword here" value={this.state.k1}/>
                     </div>
-                    <button>Submit</button>
-                </form>
+                    <div>
+                        <span className="keywordLbl">Keyword 2:</span>
+                        <input id="keyword2" onChange={this.handleKeywordChange.bind(this)} placeholder="Enter keyword here" value={this.state.k2}/>
+                    </div>
+                </div>
+                <button onClick={this.handleSubmit.bind(this)}>Submit</button>
             </div>
         )
     }
 
-    handleKeywordChange(e){
+    private handleKeywordChange(e){
         if(e.target.id === "keyword1")
             this.setState({...this.state, k1: e.target.value});
         else
             this.setState({...this.state, k2: e.target.value});
     }
 
-    handleTextChange(e){
+    private handleTextChange(e){
         this.setState({...this.state, text: e.target.value});
     }
-
-    getSentiments(){
-
+    
+    private handleSubmit(e){
+        this.props.onSubmit(this.state.text, this.state.k1, this.state.k2);
     }
 }

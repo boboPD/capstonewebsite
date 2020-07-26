@@ -1,6 +1,6 @@
 import React from 'react';
-import { OutputModel } from './models';
-export default class OutputComponent extends React.Component<{}, OutputModel>{
+import { OutputModelProps } from './models';
+export default class OutputComponent extends React.Component<{}, OutputModelProps>{
     /**
      *
      */

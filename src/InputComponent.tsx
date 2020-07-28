@@ -26,7 +26,7 @@ export default class InputComponent extends React.Component<InputModelProps, Inp
                         <input id="keyword2" onChange={this.handleKeywordChange.bind(this)} placeholder="Enter keyword here" value={this.state.k2}/>
                     </div>
                 </div>
-                <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+                <button onClick={this.handleSubmit.bind(this)} disabled={this.state.k1 === "" && this.state.k2 === ""}>Submit</button>
             </div>
         )
     }

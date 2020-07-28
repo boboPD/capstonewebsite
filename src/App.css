@@ -30,3 +30,15 @@ textarea {
 button {
   margin: 10px
 }
+
+span.positive{
+  background-color: lightgreen;
+}
+
+span.negative{
+  background-color: lightcoral;
+}
+
+span.neutral{
+  background-color: yellow;
+}

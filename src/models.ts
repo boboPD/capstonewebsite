@@ -15,13 +15,13 @@ export interface TopicSentimentData{
 }
 
 export interface SentimentClass{
-    sentence: string;
-    class: "POSITIVE" | "NEGATIVE" | "MIXED" | "NEUTRAL";
+    text: string;
+    sentiment: "POSITIVE" | "NEGATIVE" | "MIXED" | "NEUTRAL";
 }
 
-export interface GlobalState {
-    inputData: InputModel;
-    outputData: OutputModelProps;
+export interface AppState {
+    inputText: string;
+    data: TopicSentimentData;
 }
 
 export interface InputModelProps{

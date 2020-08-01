@@ -3,6 +3,7 @@ import './App.css';
 import InputComponent from './InputComponent';
 import { InputModel, TopicSentimentData, AppState } from './models';
 import OutputComponent from './OutputComponent';
+import Loader from "./Loader"
 
 class App extends React.Component<{}, AppState>{
 
@@ -10,7 +11,8 @@ class App extends React.Component<{}, AppState>{
     super(props);
     this.state = {
       inputText: "",
-      data: null
+      data: null,
+      showLoader: false
     }
   }
 
@@ -28,11 +30,19 @@ class App extends React.Component<{}, AppState>{
         </p>
         <InputComponent onSubmit={this.getSentimentScores.bind(this)} />
         <hr />
-        <div>
-          {this.state.data && Object.keys(this.state.data).map(this.createOutputElement.bind(this))}
-        </div>
+        <Loader showLoader={this.state.showLoader}/>
+        {this.state.data && this.showOutput()}
+        
       </div>
     );
+  }
+
+  private showOutput(): JSX.Element{
+    return (
+      <div>
+        {this.state.data && Object.keys(this.state.data).map(this.createOutputElement.bind(this))}
+      </div>
+    )
   }
 
   private createOutputElement(word: string): JSX.Element{
@@ -55,6 +65,8 @@ class App extends React.Component<{}, AppState>{
   }
 
   public getSentimentScores(text: string, keyword1: string, keyword2: string) {
+    this.setState({showLoader: true});
+
     const api_url = "https://69r6k8n7pc.execute-api.us-east-2.amazonaws.com/prod/topicsentiment";
     this.setState({inputText: text});
     const data: InputModel = {
@@ -72,7 +84,7 @@ class App extends React.Component<{}, AppState>{
     }).then((response: Response) => {
       return response.text();
     }).then((responseText: string) => {
-      this.setState({data: JSON.parse(responseText)});
+      this.setState({data: JSON.parse(responseText), showLoader: false});
     });
   }
 }

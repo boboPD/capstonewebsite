@@ -22,8 +22,13 @@ export interface SentimentClass{
 export interface AppState {
     inputText: string;
     data: TopicSentimentData;
+    showLoader: boolean;
 }
 
 export interface InputModelProps{
     onSubmit: Function;
+}
+
+export interface LoaderProps{
+    showLoader: boolean;
 }
